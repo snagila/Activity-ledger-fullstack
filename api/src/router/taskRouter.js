@@ -37,7 +37,7 @@ taskRouter.get("/", (req, res) => {
     })
     .catch((error) => {
       res.json({
-        message: "error",
+        status: "error",
         data: error.message,
       });
     });
@@ -57,7 +57,7 @@ taskRouter.patch("/:id", (req, res) => {
     })
     .catch((error) => {
       res.json({
-        message: "error",
+        status: "error",
         data: error.message,
       });
     });
@@ -70,13 +70,13 @@ taskRouter.delete("/:id", (req, res) => {
   deleteTaskModel(id)
     .then((response) => {
       res.json({
-        message: "success",
+        status: "success",
         data: response,
       });
     })
     .catch((error) => {
       res.json({
-        message: "error",
+        status: "error",
         data: error.message,
       });
     });
