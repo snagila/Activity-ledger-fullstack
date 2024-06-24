@@ -18,5 +18,6 @@ export const updateTaskModel = (id, updatedType) => {
 // deleting the task
 
 export const deleteTaskModel = (id) => {
-  return taskSchema.findOneAndDelete(id);
+  console.log(id);
+  return taskSchema.findByIdAndDelete(id);
 };

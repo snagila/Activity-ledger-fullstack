@@ -21,7 +21,7 @@ taskRouter.post("/", (req, res) => {
     .catch((error) => {
       res.json({
         status: "error",
-        data: error.message,
+        data: error,
       });
     });
 });
