@@ -1,5 +1,10 @@
 import express from "express";
-import { createTask, getTask, updateTaskModel } from "../model/taskModel.js";
+import {
+  createTask,
+  deleteTaskModel,
+  getTask,
+  updateTaskModel,
+} from "../model/taskModel.js";
 
 export const taskRouter = express.Router();
 
@@ -41,7 +46,6 @@ taskRouter.get("/", (req, res) => {
 // PATCH || UPDATE
 taskRouter.patch("/:id", (req, res) => {
   const { id } = req.params;
-  console.log(req);
   const updatedField = req.body;
 
   updateTaskModel(id, updatedField)
@@ -49,6 +53,25 @@ taskRouter.patch("/:id", (req, res) => {
       res.json({
         status: "success",
         data: updatedTask,
+      });
+    })
+    .catch((error) => {
+      res.json({
+        message: "error",
+        data: error.message,
+      });
+    });
+});
+
+// DELETE
+taskRouter.delete("/:id", (req, res) => {
+  const { id } = req.params;
+  console.log(id);
+  deleteTaskModel(id)
+    .then((response) => {
+      res.json({
+        message: "success",
+        data: response,
       });
     })
     .catch((error) => {
